@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="481.0" prefWidth="712.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.cum.FormuprincipalContoller">
+    <children>
+        <ImageView fitHeight="559.0" fitWidth="829.0" layoutX="-62.0" layoutY="-31.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@common-basement-problems.jpg" />
+            </image>
+        </ImageView>
+        <Button fx:id="reservar" layoutX="74.0" layoutY="281.0" mnemonicParsing="false" onAction="#inclickreservar" prefHeight="80.0" prefWidth="186.0" rotate="-0.5" text="RESERVAR" />
+        <Button fx:id="salir" layoutX="453.0" layoutY="281.0" mnemonicParsing="false" onAction="#onClickSalir" prefHeight="80.0" prefWidth="186.0" rotate="0.4" text="SALIR" />
+        <Label alignment="CENTER" layoutX="74.0" layoutY="128.0" prefHeight="80.0" prefWidth="565.0" text="Hostal Triple B" textOverrun="CLIP">
+            <font>
+                <Font name="MV Boli" size="45.0" />
+            </font>
+        </Label>
+      <Label alignment="CENTER" layoutX="74.0" layoutY="128.0" prefHeight="80.0" prefWidth="565.0" text="Hostal Triple B" textFill="#b0d5ff" textOverrun="CLIP">
+         <font>
+            <Font name="MV Boli" size="46.0" />
+         </font>
+      </Label>
+      <Label layoutX="289.0" layoutY="208.0" text="Bueno Bonito Barato" textFill="#fff3f3">
+         <font>
+            <Font name="MV Boli" size="13.0" />
+         </font>
+      </Label>
+    </children>
+</Pane>

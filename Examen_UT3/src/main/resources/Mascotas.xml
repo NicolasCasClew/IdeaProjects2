@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-mappings xmlns="https://jakarta.ee/xml/ns/persistence/orm"
+                 version="3.0">
+
+    <entity class="oracleDB.Mascotas">
+        <table name="MASCOTAS" schema="SYSTEM" catalog=""/>
+        <attributes>
+            <id name="chip">
+                <column name="CHIP"/>
+            </id>
+            <basic name="nombre">
+                <column name="NOMBRE"/>
+            </basic>
+            <basic name="raza">
+                <column name="RAZA"/>
+            </basic>
+            <basic name="telefono">
+                <column name="TELEFONO"/>
+            </basic>
+        </attributes>
+    </entity>
+</entity-mappings>
