@@ -6,9 +6,10 @@ import java.math.BigInteger;
 
 @Entity
 public class Skillset {
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    //@GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "SS_ID")
+
     private BigInteger ssId;
     @Basic
     @Column(name = "SKILLSET")

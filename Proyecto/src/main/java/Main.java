@@ -6,6 +6,9 @@ import java.math.BigInteger;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.LogManager;
+import java.util.logging.Logger;
 
 public class Main {
      static EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("default");
@@ -13,9 +16,9 @@ public class Main {
      static EntityTransaction transaction = entityManager.getTransaction();
      Scanner sc = new Scanner(System.in);
     public static void main(String[] args){
-        crearEmpleado("test4","test4","test4");
+        LogManager.getLogManager().getLogger("").setLevel(Level.SEVERE);
+        //crearEmpleado("test4","test4","test4");
 
-    //crearSkillsetTest();
     }
 
 
@@ -30,7 +33,7 @@ public class Main {
         int[] array = highestID();
         Skillset ss = new Skillset(array[0],array[1], 0,0);
         transaction.begin();
-            entityManager.persist(ss) ; //skill TODO Level TODO
+            entityManager.persist(ss) ; //TODO skill y nivel, conectar con skill
         transaction.commit();
         return array[1];
     }
@@ -55,8 +58,21 @@ public class Main {
         return (array);
 
     }
-    public static void createSkill(){
+    public static void createSkill(String skill, String desc){
 
+        transaction.begin();
+
+        String query = "insert into SKILL(SKILL_NAME,DESCR) values(?, ?)"; //TODO Añadir control de repeticiones
+
+        entityManager.createNativeQuery(query)
+                .setParameter(1,skill)
+                .setParameter(2, desc)
+                .executeUpdate();
+
+
+
+        transaction.commit();
+        System.out.println("AAAA CURBAAAAA");
     }
 
     public static void addSkill(){
