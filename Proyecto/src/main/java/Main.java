@@ -13,39 +13,58 @@ public class Main {
      static EntityTransaction transaction = entityManager.getTransaction();
      Scanner sc = new Scanner(System.in);
     public static void main(String[] args){
-       // insertarEmpleado(new Employee("123456789","Juan","Manolin", BigInteger.valueOf(0)));
-        skillMasAlto();
+        crearEmpleado("test4","test4","test4");
+
     //crearSkillsetTest();
     }
 
 
-    public static void insertarEmpleado(Employee emp){
+    public static void crearEmpleado( String NIF, String Nombre, String Apellido){
+        Employee emp = new Employee(NIF, Nombre, Apellido,BigInteger.valueOf(crearSkillsetTest()));
         transaction.begin();
         entityManager.persist(emp);
-        //CONSULTAR SKILLSETS Y BUSCAR EL Nº MAX
-        //skillMasAlto();
         transaction.commit();
-        System.out.println("Usuario creado con exito");
+        System.out.println("Usuario "+emp.getName()+ " creado con exito");
     }
-    public static void crearSkillsetTest(){
+    public static Integer crearSkillsetTest(){
+        int[] array = highestID();
+        Skillset ss = new Skillset(array[0],array[1], 0,0);
         transaction.begin();
-            entityManager.persist( new Skillset(0,0,0,0));
+            entityManager.persist(ss) ; //skill TODO Level TODO
         transaction.commit();
+        return array[1];
     }
 
 
-    public static void skillMasAlto(){
+    public static int[] highestID(){
         ArrayList<Integer> test = new ArrayList<>() ;
+        ArrayList<Integer> test2 = new ArrayList<>() ;
+
             Query query = entityManager.createNativeQuery(
                     "SELECT * FROM SKILLSET", Skillset.class);
             List<Skillset> res = query.getResultList();
             for (Skillset i :  res) {
-                System.out.println(i.getSsId());
                 test.add(i.getSsId().intValue());
+                test2.add(i.getSkillset().intValue());
             }
-
+        int[] array = new int[2];
+        Integer max = iterator(test);
+        Integer max2 = iterator(test2);
+        array[0] =max+1;
+        array[1] = max2+1;
+        return (array);
 
     }
+    public static void createSkill(){
+
+    }
+
+    public static void addSkill(){
+
+    }
+
+
+
 
     public static Integer iterator(ArrayList<Integer> arr){
         Integer max = arr.get(0);
@@ -53,7 +72,6 @@ public class Main {
             if(i>max){
                 max=i;
             }
-
         }
         return max;
     }
