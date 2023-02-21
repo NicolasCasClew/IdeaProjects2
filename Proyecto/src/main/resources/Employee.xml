@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-mappings xmlns="https://jakarta.ee/xml/ns/persistence/orm"
+                 version="3.0">
+
+    <entity class="DBs.Employee">
+        <table name="EMPLOYEE" schema="SYSTEM" />
+        <attributes>
+            <id name="nif">
+                <column name="NIF"/>
+            </id>
+            <basic name="name">
+                <column name="NAME"/>
+            </basic>
+            <basic name="surname">
+                <column name="SURNAME"/>
+            </basic>
+            <basic name="skillset">
+                <column name="SKILLSET"/>
+            </basic>
+        </attributes>
+    </entity>
+</entity-mappings>
