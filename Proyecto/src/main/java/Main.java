@@ -17,6 +17,7 @@ public class Main {
      static EntityManager entityManager = entityManagerFactory.createEntityManager();
      static EntityTransaction transaction = entityManager.getTransaction();
      static Scanner sc = new Scanner(System.in);
+
     public static void main(String[] args){
         LogManager.getLogManager().getLogger("").setLevel(Level.SEVERE);
 
@@ -168,5 +169,16 @@ if(skillExists(skill)) {
             }
         }
         return max;
+    }
+
+    public static List<Employee> getAllEmployees() {
+        transaction.begin();
+        List<Employee> results = entityManager.createNativeQuery("SELECT * FROM EMPLOYEE", Employee.class).getResultList();
+        for(Employee e : results){
+            System.out.println("EL EMPLEADO = "+ e.getName());
+        }
+
+        transaction.commit();
+        return results;
     }
 }
