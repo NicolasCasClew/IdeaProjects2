@@ -1,3 +1,5 @@
+package FX;
+
 import DBs.Employee;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -9,7 +11,6 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.text.Text;
-
 
 import java.net.URL;
 import java.util.List;
@@ -36,7 +37,7 @@ public class GUIcontroler implements Initializable {
         skillsedid.setCellValueFactory(new PropertyValueFactory<>("skillset"));
 
        //. empLista.add(Main.getAllEmployees());
-        List<Employee> tempemp = Main.getAllEmployees();
+        List<Employee> tempemp = functions.getAllEmployees();
 
         for (Employee e : tempemp){
             empLista.add(e);

@@ -5,28 +5,28 @@ import jakarta.persistence.*;
 import java.math.BigInteger;
 
 @Entity
-public class Skill {
+public class Skills {
 
     @Id
     @Column(name = "SKILL_ID")
-
     private BigInteger skillId;
     @Basic
     @Column(name = "SKILL_NAME")
     private String skillName;
     @Basic
-    @Column(name = "DESCR")
-    private String descr;
+    @Column(name = "DESCRIPTION")
+    private String description;
 
-
-    public Skill(BigInteger skillId, String skillName, String descr) {
+    public Skills(BigInteger skillId, String skillName, String description) {
         this.skillId = skillId;
         this.skillName = skillName;
-        this.descr = descr;
+        this.description = description;
     }
 
-    public Skill() {
+    public Skills() {
+
     }
+
 
     public BigInteger getSkillId() {
         return skillId;
@@ -44,11 +44,11 @@ public class Skill {
         this.skillName = skillName;
     }
 
-    public String getDescr() {
-        return descr;
+    public String getDescription() {
+        return description;
     }
 
-    public void setDescr(String descr) {
-        this.descr = descr;
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

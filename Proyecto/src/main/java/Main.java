@@ -1,10 +1,13 @@
 import DBs.Employee;
 import DBs.Skill;
+import DBs.Skills;
 import DBs.Skillset;
 import jakarta.persistence.*;
+import jakarta.persistence.criteria.CriteriaBuilder;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.util.Collections;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -22,12 +25,40 @@ public class Main {
         LogManager.getLogManager().getLogger("").setLevel(Level.SEVERE);
 
         System.out.println("TESTEADORS = ");
+        //int[] missingno = new int[]{1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,21};
 
-       //removeSkill();
-        //crearEmpleado("test4","test4","test4");
-    highestID();
+        //System.out.println("EL QUE DEVUELVE = "+ missingNumber());
+        while(true){
+            System.out.println("Que skill quieres añador?");
+            String skill = sc.nextLine();
+            System.out.println("Que descripvion tendra?");
+            String desc = sc.nextLine();
+
+            createSkill(skill,desc);
+        }
     }
 
+
+    public static int missingNumber(){
+        int[] missingno = readSkills();
+
+        for(int i = 0; i>=0;i++){
+            try {
+                if ((missingno[i] + 1 == missingno[i + 1])) {
+                    //es el siguiente numericamente
+                    //System.out.println("SIGUE  |  buf= "+(missingno[i]+1)+"  i =  "+missingno[i+1]);
+                    //return missingno[i];
+                } else {
+                    //System.out.println("SALE|  buf= "+(missingno[i]+1)+"  i =  "+missingno[i+1]);
+                    return (missingno[i] + 1);
+                }
+            }catch (ArrayIndexOutOfBoundsException e){
+                return ((missingno[missingno.length-1])+1);
+            }
+        }
+
+        return ((missingno[missingno.length-1])+1);
+    }
 
     public static void crearEmpleado( String NIF, String Nombre, String Apellido){
         Employee emp = new Employee(NIF, Nombre, Apellido,BigInteger.valueOf(crearSkillsetTest()));
@@ -56,6 +87,27 @@ public class Main {
         return array[1];
     }
 
+    public static void skillIDiterator(){
+        Query query = entityManager.createNativeQuery("SELECT  SKILL_ID FROM SKILL");
+
+        List<BigDecimal> ids = query.getResultList();
+        for(BigDecimal i: ids){
+            System.out.println("EL VALOR = "+i);
+        }
+    }
+    public static int[] readSkills(){
+        List<BigDecimal> list;
+
+        Query query = entityManager.createNativeQuery("SELECT SKILL_ID FROM SKILLS");
+        list = query.getResultList();
+        Collections.sort(list);
+        int[] vec= new int[list.size()];
+        for (int i = 0; i<list.size();i++){
+            vec[i]=list.get(i).intValue();
+        }
+
+    return  vec;
+    }
 
     public static int[] highestID(){
 
@@ -90,15 +142,11 @@ public class Main {
 
         transaction.begin();
 
-        String query = "insert into SKILL(SKILL_NAME,DESCR) values(?, ?)"; //TODO Añadir control de repeticiones
-
-        entityManager.createNativeQuery(query)
-                .setParameter(1,skill)
-                .setParameter(2, desc)
-                .executeUpdate();
+        Skills sk = new Skills(BigInteger.valueOf(missingNumber()),skill, desc);
+        entityManager.persist(sk);
 
         transaction.commit();
-        System.out.println("AAAA CURBAAAAA");
+        System.out.println("Skill insertada con exito");
     }
 
     public static Boolean skillExists(String skill){
@@ -127,7 +175,7 @@ public class Main {
     public static void removeSkill(String skill) {
 
         //pasar la skil a liminar (leer skill_name y obtener su id)
-if(skillExists(skill)) {
+    if(skillExists(skill)) {
 
     transaction.begin();
 

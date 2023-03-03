@@ -2,8 +2,8 @@
 <entity-mappings xmlns="https://jakarta.ee/xml/ns/persistence/orm"
                  version="3.0">
 
-    <entity class="DBs.Skill">
-        <table name="SKILL" schema="SYSTEM" />
+    <entity class="DBs.Skills">
+        <table name="SKILLS" schema="SYSTEM" catalog=""/>
         <attributes>
             <id name="skillId">
                 <column name="SKILL_ID"/>
@@ -11,8 +11,8 @@
             <basic name="skillName">
                 <column name="SKILL_NAME"/>
             </basic>
-            <basic name="descr">
-                <column name="DESCR"/>
+            <basic name="description">
+                <column name="DESCRIPTION"/>
             </basic>
         </attributes>
     </entity>
